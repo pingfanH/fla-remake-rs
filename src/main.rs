@@ -57,9 +57,9 @@ fn find()->Result<String>{
 }
 fn remake_mode()->Result<String>{
     println!("{}","choose remake mode".green());
-    println!("{}","1:指定确切名称".green());
-    println!("{}","2:提取所有包含输入字符的导出名称".green());
-    println!("{}","均可使用空格分割".green());
+    println!("{}","1:Specify exact name".green());
+    println!("{}","2:Extract export names containing input characters".green());
+    println!("{}","Use space splitting".green());
     // println!("1:指定确切名称");
     // println!("2:提取所有包含输入字符的导出名称");
     // println!("均可使用空格分割");

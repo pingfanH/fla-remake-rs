@@ -1,5 +1,5 @@
 use std::{io::{self},process::exit};
-use ping_lib::{debug::{PingDebug,info}, file::unzip};
+use ping_lib::{debug::PingDebug, file::unzip};
 use anyhow::Result;
 use std::path::Path;
 mod xml;
@@ -24,7 +24,6 @@ fn main()-> Result<()> {
     Ok(())
 }
 fn unzip_fla(name:&str){
-    "解压中".print();
     let path=Path::new(name);
     if path.is_dir(){return;}
     
@@ -32,7 +31,7 @@ fn unzip_fla(name:&str){
     let _ = unzip(&name, &file_name);
 }
 fn find()->Result<String>{
-    println!("{} {}","input fla name ".green(),"no .fla :".red());
+    println!("{} {} :","input fla name".green(),"no .fla".red());
     let mut name=String::new();
     match io::stdin().read_line(&mut name){
         Ok(_)=>{},
@@ -48,7 +47,8 @@ fn find()->Result<String>{
     };
     let file_path=Path::new(&file_path_str);
     if file_path.exists(){
-        info("find!");
+
+        "find!".info();
         return Ok(file_path_str);
     }else{
         "fla not find!".einfo();
@@ -56,10 +56,13 @@ fn find()->Result<String>{
     }
 }
 fn remake_mode()->Result<String>{
-    "choose remake mode".print();
-    "1:指定确切名称".print();
-    "2:提取所有包含输入字符的导出名称".print();
-    "均可使用空格分割".print();
+    println!("{}","choose remake mode".green());
+    println!("{}","1:指定确切名称".green());
+    println!("{}","2:提取所有包含输入字符的导出名称".green());
+    println!("{}","均可使用空格分割".green());
+    // println!("1:指定确切名称");
+    // println!("2:提取所有包含输入字符的导出名称");
+    // println!("均可使用空格分割");
     let mut mode=String::new();
     match io::stdin().read_line(&mut mode){
         Ok(_)=>{},
@@ -69,7 +72,8 @@ fn remake_mode()->Result<String>{
     Ok(mode)
 }
 fn lines()->Result<String>{
-    "input args".print();
+    println!("{}","input args".green());
+    // println!("input args");
     let mut line=String::new();
     match io::stdin().read_line(&mut line){
         Ok(_)=>{},
@@ -85,18 +89,9 @@ fn zip_exe(){
     let _ = ping_lib::file::write("ZIP.exe", ZIP);
 }
 fn command(args:&str){
-    let output = Command::new("./ZIP.exe")
+    let _ = Command::new("./ZIP.exe")
         .arg(args)
-        .output()
-        .expect("Failed to execute command");
-
-    if output.status.success() {
-        let stdout = String::from_utf8_lossy(&output.stdout);
-        println!("Command executed successfully. Output: {}", stdout);
-    } else {
-        let stderr = String::from_utf8_lossy(&output.stderr);
-        println!("Command failed. Error: {}", stderr);
-    }
+        .output();
 }
 #[test]
 fn test(){

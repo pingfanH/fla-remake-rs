@@ -2,7 +2,7 @@ use std::fs;
 use crate::file::copy_main;
 use indicatif::ProgressBar;
 use crate::xml::{read_export, read_xml};
-use ping_lib::file::{readfilenameloop,copy};
+use crate::utlis::{readfilenameloop,copy};
 pub fn mode_one(name:&str,line:&str){
     let exports_path=format!("{}\\LIBRARY\\exports\\",name);
     let file_name=line;

@@ -1,10 +1,7 @@
 use std::collections::HashSet;
 use regex::Regex;
 use serde_json::{Value,json, Map};
-use ping_lib::{
-    debug::PingDebug,
-    file::{read_string, copy},
-};
+use crate::utlis::{read_string, copy};
 pub fn read_export(file_path:&str)->Value{
     let file_string=read_string(file_path).unwrap();
     let re = Regex::new(r#"libraryItemName="(.*?)""#).unwrap();
@@ -32,7 +29,7 @@ pub fn read_xml(export_folder:&str,src_folder:&str,type_name:&str,file_path:&str
     let mut file_string=String::new();
     match read_string(&file_path){
         Ok(content)=>file_string=content,
-        Err(err)=>err.einfo(),
+        Err(err)=>println!("{}",err),
     };
     let re = Regex::new(r#"libraryItemName="(.*?)""#).unwrap();
     let mut list:Value=json!({

@@ -1,5 +1,6 @@
 use std::{io::{self},process::exit};
-use ping_lib::{debug::PingDebug, file::unzip};
+use utlis::{PingDebug,unzip};
+mod utlis;
 use anyhow::Result;
 use std::path::Path;
 mod xml;
@@ -31,7 +32,7 @@ fn unzip_fla(name:&str){
     let _ = unzip(&name, &file_name);
 }
 fn find()->Result<String>{
-    println!("{} {} :","input fla name".green(),"no .fla".red());
+    println!("{} {} :","input fla name","(no .fla)");
     let mut name=String::new();
     match io::stdin().read_line(&mut name){
         Ok(_)=>{},
@@ -56,10 +57,10 @@ fn find()->Result<String>{
     }
 }
 fn remake_mode()->Result<String>{
-    println!("{}","choose remake mode".green());
-    println!("{}","1:Specify exact name".green());
-    println!("{}","2:Extract export names containing input characters".green());
-    println!("{}","Use space splitting".green());
+    println!("{}","choose remake mode");
+    println!("{}","1:Specify exact name");
+    println!("{}","2:Extract export names containing input characters");
+    println!("{}","Use space splitting");
     // println!("1:指定确切名称");
     // println!("2:提取所有包含输入字符的导出名称");
     // println!("均可使用空格分割");
@@ -72,7 +73,7 @@ fn remake_mode()->Result<String>{
     Ok(mode)
 }
 fn lines()->Result<String>{
-    println!("{}","input args".green());
+    println!("{}","input args");
     // println!("input args");
     let mut line=String::new();
     match io::stdin().read_line(&mut line){
@@ -86,7 +87,7 @@ fn zip_exe(){
     let zip_path="./ZIP.exe";
     let path=Path::new(zip_path);
     if path.is_file(){return;}
-    let _ = ping_lib::file::write("ZIP.exe", ZIP);
+    let _ = utlis::write("ZIP.exe", ZIP);
 }
 fn command(args:&str){
     let _ = Command::new("./ZIP.exe")

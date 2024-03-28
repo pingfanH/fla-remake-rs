@@ -7,9 +7,10 @@ edition = "2021"
 
 [dependencies]
 anyhow="1.0.75"
-ping_lib={path="D:\\project\\RUST\\ping_lib"}
 regex="*"
 indicatif = "*"
 serde="*"
 serde_json="*"
 colored="2.0.4"
+zip="0.6.6"
+chrono="0.4.37"

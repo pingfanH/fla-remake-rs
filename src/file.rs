@@ -1,6 +1,6 @@
 use std::fs;
-use ping_lib::file::readfilenameloop;
-use ping_lib::file::copy;
+use crate::utlis::readfilenameloop;
+use crate::utlis::copy;
 use serde_json::{Map, Value};
 pub fn copy_main(name:&str,export:&str){
     let _ = copy(&format!("{}\\bin",name),&format!("{}\\bin",export));

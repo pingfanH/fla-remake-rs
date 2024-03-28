@@ -9,7 +9,7 @@ mod file;
 use mode::*;
 use colored::*;
 use std::process::Command;
-const ZIP:&[u8]=include_bytes!("../ZIP.exe");
+//const ZIP:&[u8]=include_bytes!("../ZIP.exe");
 fn main()-> Result<()> {
     zip_exe();
     let name=find()?;
@@ -87,7 +87,9 @@ fn zip_exe(){
     let zip_path="./ZIP.exe";
     let path=Path::new(zip_path);
     if path.is_file(){return;}
-    let _ = utlis::write("ZIP.exe", ZIP);
+    //let _ = utlis::write("ZIP.exe", ZIP);
+    println!("ZIP.exe not find!");
+    exit(0x0100);
 }
 fn command(args:&str){
     let _ = Command::new("./ZIP.exe")
